@@ -1,12 +1,19 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // This code will run when the DOM is fully loaded
-    const signUpButton = document.querySelector("button[data-bs-toggle='modal']");
-    const modal = document.getElementById("signupModal");
-
-    signUpButton.addEventListener("click", function() {
-        console.log("Sign Up modal opened!");
+describe('Signup Modal Tests', () => {
+    beforeEach(() => {
+        cy.visit('/path/to/your/signup-page.html'); // Update with your actual path
     });
 
-    // You can add more functionality here if needed
-});
+    it('should open and close the modal', () => {
+        // Open the modal
+        cy.get('button').first().click();
 
+        // Check that the modal is visible
+        cy.get('#signupModal').should('be.visible');
+
+        // Close the modal
+        cy.get('.btn-close').click(); // Ensure this class is correct
+
+        // Verify that the modal is no longer visible
+        cy.get('#signupModal').should('not.be.visible');
+    });
+});
